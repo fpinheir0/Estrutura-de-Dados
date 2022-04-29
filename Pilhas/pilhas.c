@@ -44,3 +44,16 @@ void inicia(node *PILHA)
  tam=0;
 }
 
+int menu (void) {
+    int opt;
+    printf ("***BEM VINDO AO PROGRAMA PILHAS***");
+    printf ("Escolha a opcao\n");
+    printf ("0. Sair\n");
+    printf ("1. Limpar Pilha\n");
+    printf ("2. Mostrar Pilha\n");
+    printf ("4. Empilhar\n");
+    printf ("5. Desempilhar\n");
+    
+    return opt;
+}
+
