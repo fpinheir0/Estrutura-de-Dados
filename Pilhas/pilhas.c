@@ -18,41 +18,38 @@ void push(node *PILHA);
 node *pop(node *PILHA);
 
 
-int main(void)
-{
- node *PILHA = (node *) malloc(sizeof(node));
- if(!PILHA){
-  printf("Sem memoria disponivel!\n");
-  exit(1);
- }else{
- inicia(PILHA);
- int opt;
-
- do{
-  opt=menu();
-  opcao(PILHA,opt);
- }while(opt);
-
- free(PILHA);
- return 0;
- }
+int main(void){
+    node *PILHA = (node *) malloc(sizeof(node));
+        if(!PILHA){
+            printf("Sem memoria disponivel!\n");
+            exit(1);
+        }else{
+                inicia(PILHA);
+            int opt;
+                do{
+                    opt=menu();
+                    opcao(PILHA,opt);
+                } while(opt);
+                    free(PILHA);
+        
+        return 0;
+        }
 }
 
-void inicia(node *PILHA)
-{
- PILHA->prox = NULL;
- tam=0;
+void inicia(node *PILHA){
+    PILHA->prox = NULL;
+    tam=0;
 }
 
 int menu (void) {
     int opt;
-    printf ("***BEM VINDO AO PROGRAMA PILHAS***");
-    printf ("Escolha a opcao\n");
-    printf ("0. Sair\n");
-    printf ("1. Limpar Pilha\n");
-    printf ("2. Mostrar Pilha\n");
-    printf ("4. Empilhar\n");
-    printf ("5. Desempilhar\n");
+        printf ("***BEM VINDO AO PROGRAMA PILHAS***");
+        printf ("Escolha a opcao\n");
+        printf ("0. Sair\n");
+        printf ("1. Limpar Pilha\n");
+        printf ("2. Mostrar Pilha\n");
+        printf ("4. Empilhar\n");
+        printf ("5. Desempilhar\n");
     
     return opt;
 }
@@ -60,25 +57,47 @@ int menu (void) {
 void opcao (node *PILHA, int op) {
     node *tmp;
     switch (op){
-    case 0:
-        libera(PILHA);
+        case 0:
+            libera(PILHA);
         break;
-    case 1:
-    libera(PILHA);
-    inicia(PILHA);
-    break;
-
-    case 3:
-    push(PILHA);
-    break;
-
-    case 4:
-    tmp= pop(PILHA);
-    if (tmp != NULL)
-    {
-        printf("Retirado: %3d\n\n", tmp->num);
+        
+        case 1:
+            libera(PILHA);
+            inicia(PILHA);
         break;
-    }   
+
+        case 3:
+            push(PILHA);
+        break;
+
+        case 4:
+            tmp= pop(PILHA);
+        if (tmp != NULL){
+            printf("Retirado: %3d\n\n", tmp->num);
+            break;
+        } 
+          
     default:
     printf("Comando invalido\n\n");
+    }
+}
+
+int vazia(node *PILHA) {
+    if(PILHA->prox == NULL)
+    return 1;
+    
+    else
+    return 0;
+}
+
+node *aloca()
+{
+    node *novo=(node *) malloc(sizeof(node));
+    if(!novo){
+        printf("Sem memoria disponivel!\n");
+        exit(1);
+    }else{
+        printf("Novo elemento: "); scanf("%d", &novo->num);
+    return novo;
+    }
 }
