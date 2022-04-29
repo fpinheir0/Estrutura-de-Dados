@@ -57,3 +57,28 @@ int menu (void) {
     return opt;
 }
 
+void opcao (node *PILHA, int op) {
+    node *tmp;
+    switch (op){
+    case 0:
+        libera(PILHA);
+        break;
+    case 1:
+    libera(PILHA);
+    inicia(PILHA);
+    break;
+
+    case 3:
+    push(PILHA)
+    break;
+
+    case 4:
+    tmp= pop(PILHA);
+    if (tmp != NULL)
+    {
+        printf("Retirado: %3d\n\n", tmp->num);
+        break;
+    }   
+    default:
+    printf("Comando invalido\n\n");
+}
