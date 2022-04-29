@@ -69,7 +69,7 @@ void opcao (node *PILHA, int op) {
     break;
 
     case 3:
-    push(PILHA)
+    push(PILHA);
     break;
 
     case 4:
