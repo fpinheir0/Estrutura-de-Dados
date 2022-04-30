@@ -125,3 +125,34 @@ void exibe(node *PILHA){
 
         printf("\n\n");
 }
+
+void libera(node *PILHA){
+    if(!vazia(PILHA)){
+        node *proxNode,
+        *atual;
+
+        atual = PILHA->prox;
+            while(atual != NULL){
+                proxNode = atual->prox;
+                free(atual);
+                atual = proxNode;
+            }
+    }
+}
+
+void push(node *PILHA){
+    node *novo=aloca();
+    novo->prox = NULL;
+
+    if(vazia(PILHA))
+        PILHA->prox=novo;
+    else{
+        node *tmp = PILHA->prox;
+
+        while(tmp->prox != NULL)
+        tmp = tmp->prox;
+
+        tmp->prox = novo;
+    }
+    tam++;
+}
