@@ -156,3 +156,23 @@ void push(node *PILHA){
     }
     tam++;
 }
+
+node *pop(node *PILHA){
+    if(PILHA->prox == NULL){
+        printf("PILHA ja vazia\n\n");
+    return NULL;
+    }else{
+        node *ultimo = PILHA->prox,
+        *penultimo = PILHA;
+
+        while(ultimo->prox != NULL){
+            penultimo = ultimo;
+            ultimo = ultimo->prox;
+        }
+
+        penultimo->prox = NULL;
+        tam--;
+  
+        return ultimo;
+    }
+}
