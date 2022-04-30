@@ -24,7 +24,7 @@ int main(void){
             printf("Sem memoria disponivel!\n");
             exit(1);
         }else{
-                inicia(PILHA);
+            inicia(PILHA);
             int opt;
                 do{
                     opt=menu();
@@ -43,13 +43,14 @@ void inicia(node *PILHA){
 
 int menu (void) {
     int opt;
-        printf ("***BEM VINDO AO PROGRAMA PILHAS***");
+        // printf ("***BEM VINDO AO PROGRAMA PILHAS***");
         printf ("Escolha a opcao\n");
         printf ("0. Sair\n");
         printf ("1. Limpar Pilha\n");
         printf ("2. Mostrar Pilha\n");
-        printf ("4. Empilhar\n");
-        printf ("5. Desempilhar\n");
+        printf ("3. Empilhar\n");
+        printf ("4. Desempilhar\n");
+        printf("Opcao: "); scanf("%d", &opt);
     
     return opt;
 }
@@ -65,6 +66,10 @@ void opcao (node *PILHA, int op) {
             libera(PILHA);
             inicia(PILHA);
         break;
+        
+        case 2:
+            exibe(PILHA);
+        break;
 
         case 3:
             push(PILHA);
@@ -72,14 +77,14 @@ void opcao (node *PILHA, int op) {
 
         case 4:
             tmp= pop(PILHA);
-        if (tmp != NULL){
+        if (tmp != NULL)
             printf("Retirado: %3d\n\n", tmp->num);
-            break;
-        } 
-          
-    default:
-    printf("Comando invalido\n\n");
-    }
+        
+        break;
+         
+        default:
+            printf("Comando invalido\n\n");
+    } 
 }
 
 int vazia(node *PILHA) {
