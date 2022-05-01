@@ -29,6 +29,14 @@ int main (int argc, char *__argv[]){
                     }else
                         break;
             }
+           printf("\n");
+           proximo_ponto->proximo = NULL;
+           proximo_ponto = ini_ponto;
+            while (proximo_ponto != NULL){
+                printf("x: %d, y: %d\n", proximo_ponto->x, proximo_ponto->y);
+                proximo_ponto = proximo_ponto->proximo;
+            }
+            return 0;
                     
 }
 
