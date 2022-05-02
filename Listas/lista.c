@@ -10,6 +10,7 @@ int main (int argc, char *__argv[]){
     t_ponto * ini_ponto;
     t_ponto * proximo_ponto;
     int resp;
+    int limpar;
 
     ini_ponto = (t_ponto *) malloc(sizeof(t_ponto));
         if (ini_ponto == NULL)
@@ -30,13 +31,14 @@ int main (int argc, char *__argv[]){
                         break;
             }
            printf("\n");
-           proximo_ponto->proximo = NULL;
-           proximo_ponto = ini_ponto;
-            printf("Esses sao os elementos da sua lista:\n\n");
-                while (proximo_ponto != NULL){
-                    printf("x: %d, y: %d\n", proximo_ponto->x, proximo_ponto->y);
-                    proximo_ponto = proximo_ponto->proximo;
-                }
+            proximo_ponto->proximo = NULL;
+            proximo_ponto = ini_ponto;
+            printf("Esses so os elementos da sua lista:\n\n");
+            while (proximo_ponto != NULL){
+                printf("x: %d, y: %d\n", proximo_ponto->x, proximo_ponto->y);
+                proximo_ponto = proximo_ponto->proximo;
+            }
+
             return 0;
 }
 
