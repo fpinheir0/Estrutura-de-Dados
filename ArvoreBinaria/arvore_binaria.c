@@ -61,5 +61,15 @@ void insere_no(No *tree, int num){
 	}
 }
 
-
+void pesquisa_no(No *tree, int num){
+	if(tree == NULL){
+		printf("Numero %d nao esta presente na arvore\n",num);
+	}else if(num < tree->num){
+		pesquisa_no(tree->esq, num);
+	}else if(num > tree->num){
+		pesquisa_no(tree->dir, num);
+	}else{
+		printf("O numero %d esta presente na arvore\n", num);
+	}
+}
 
