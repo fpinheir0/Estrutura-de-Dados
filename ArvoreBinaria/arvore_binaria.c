@@ -86,3 +86,31 @@ int acha_maior(int a, int b){
 	}else
 		return b;
 }
+
+No *remove_no(No *tree, int num){
+	No *aux;
+	if(tree==NULL){
+		printf("Numero ausente\n");
+	}else if(num < tree->num){
+		tree->esq = remove_no(tree->esq, num);
+	}else if(num > tree->num){
+		tree->dir = remove_no(tree->dir, num);
+	}else if(tree->esq == NULL && tree->dir == NULL){
+		aux = tree;
+		free(tree);
+		return NULL;
+	}else if(tree->esq == NULL){
+		aux = tree->dir;
+		free(tree);
+		return aux;
+	}else if(tree->dir == NULL){
+		aux = tree->esq;
+		free(tree);
+		return aux;
+	}else{
+		No *menor = acha_menor(tree->dir);
+		tree->num = menor->num;
+		tree->dir = remove_no(tree->dir, menor->num);
+	}
+	return tree;
+}
