@@ -9,6 +9,7 @@ typedef struct ponto{
 int main (int argc, char *__argv[]){
     t_ponto * ini_ponto;
     t_ponto * proximo_ponto;
+    t_ponto * anterior;
     int resp;
     int limpar;
 
@@ -39,7 +40,30 @@ int main (int argc, char *__argv[]){
                 proximo_ponto = proximo_ponto->proximo;
             }
 
-            return 0;
+        // printf("\nInforme o valor a ser excluido :");
+        // scanf("%d", &limpar);
+        //     if (ini_ponto->x ==limpar){
+        //         anterior=ini_ponto;
+        //         ini_ponto=ini_ponto->proximo;
+        //         free(anterior);
+        //     } else {
+        //         proximo_ponto=ini_ponto;
+        //             while (proximo_ponto->x!=limpar&&proximo_ponto->proximo!=NULL){
+        //               anterior=proximo_ponto;
+        //               proximo_ponto=proximo_ponto->proximo;  
+        //             } if (proximo_ponto->x==limpar){
+        //                 anterior->proximo=proximo_ponto->proximo;
+        //                 free(proximo_ponto);
+        //             } else printf("\nNao existe na lista.");              
+                    
+        //     }
+        // proximo_ponto=ini_ponto;
+        // while (proximo_ponto->proximo!=NULL)
+        // {
+        //     printf("%d", proximo_ponto->x);
+        //     proximo_ponto=proximo_ponto->proximo;
+        // }
+        
 }
 
 
