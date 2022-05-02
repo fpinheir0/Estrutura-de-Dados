@@ -24,5 +24,17 @@ void exibir_preordem(No *tree);
 void exibir_posordem(No *tree);
 void deletar_arv(No *tree);
 
+No* cria_no(int num){
+	No *tree;
+	tree = (No*) malloc(sizeof(No));
+
+	tree->esq = NULL;
+	tree->dir = NULL;
+	tree->num =  num;
+
+	return tree;
+}
+
+
 
 
