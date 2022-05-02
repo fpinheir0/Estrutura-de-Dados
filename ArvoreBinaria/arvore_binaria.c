@@ -43,7 +43,23 @@ Arvore* cria_arvore(int num){
 	return tree;
 }
 
-
+void insere_no(No *tree, int num){
+	if(num < tree->num){
+		if(tree->esq){
+			insere_no(tree->esq, num);
+		}else{
+			No *novo = cria_no(num);
+			tree->esq = novo;
+		}
+	}else{
+		if(tree->dir){
+			insere_no(tree->dir, num);
+		}else{
+			No *novo = cria_no(num);
+			tree->dir = novo;
+		}
+	}
+}
 
 
 
