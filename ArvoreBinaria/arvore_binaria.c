@@ -73,3 +73,16 @@ void pesquisa_no(No *tree, int num){
 	}
 }
 
+No* acha_menor(No *tree){
+	if(tree->esq == NULL){
+		return tree;
+	}
+	return acha_menor(tree->esq);
+}
+
+int acha_maior(int a, int b){
+	if(a>b){
+		return a;
+	}else
+		return b;
+}
