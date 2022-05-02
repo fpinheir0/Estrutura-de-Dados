@@ -115,6 +115,53 @@ No *remove_no(No *tree, int num){
 	return tree;
 }
 
+int altura(No *tree){
+	if((tree==NULL)||(tree->esq==NULL&&tree->dir==NULL)){
+	return 0;
+	}else{
+	return 1 + acha_maior(altura(tree->esq), altura(tree->dir));
+	}
+}
+
+void exibir_emordem(No *tree){
+	if(tree!=NULL){
+	exibir_emordem(tree->esq);
+	printf("%d ",tree->num);
+	exibir_emordem(tree->dir);
+	}
+}
+
+void exibir_preordem(No *tree){
+	if(tree!=NULL){
+	printf("%d ",tree->num);
+	exibir_preordem(tree->esq);
+	exibir_preordem(tree->dir);
+	}
+}
+
+void exibir_posordem(No *tree){
+	if(tree!=NULL){
+	exibir_posordem(tree->esq);
+	exibir_posordem(tree->dir);
+	printf("%d ",tree->num);
+	}
+}
+
+void deletar_arv(No *tree){
+	No *esquerda;
+	No *direita;
+	while(tree->esq!=NULL){
+	esquerda = tree->esq;
+	remove_no(tree, esquerda->num);
+	}
+	while(tree->dir!=NULL){
+	direita = tree->dir;
+	remove_no(tree, direita->num);
+	}
+	free(tree);
+}
+
+
 int main(){
 	int x=0,opcao=0,opcao2=0,cont=0,opc=1;
 
