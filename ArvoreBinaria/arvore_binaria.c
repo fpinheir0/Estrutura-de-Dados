@@ -35,6 +35,15 @@ No* cria_no(int num){
 	return tree;
 }
 
+Arvore* cria_arvore(int num){
+	Arvore *tree;
+	tree = (Arvore*) malloc(sizeof(Arvore));
+	tree->raiz = cria_no(num);
+
+	return tree;
+}
+
+
 
 
 
