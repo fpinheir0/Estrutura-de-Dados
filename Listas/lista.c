@@ -32,11 +32,12 @@ int main (int argc, char *__argv[]){
            printf("\n");
            proximo_ponto->proximo = NULL;
            proximo_ponto = ini_ponto;
-            while (proximo_ponto != NULL){
-                printf("x: %d, y: %d\n", proximo_ponto->x, proximo_ponto->y);
-                proximo_ponto = proximo_ponto->proximo;
-            }
+            printf("Esses sao os elementos da sua lista:\n\n");
+                while (proximo_ponto != NULL){
+                    printf("x: %d, y: %d\n", proximo_ponto->x, proximo_ponto->y);
+                    proximo_ponto = proximo_ponto->proximo;
+                }
             return 0;
-                    
 }
+
 
