@@ -11,18 +11,18 @@ typedef struct arvore{
 	No *raiz;
 }Arvore;
 
-// No* cria_no(int num);
-// Arvore* cria_arvore(int num);
-// void insere_no(No *tree, int num);
-// void pesquisa_no(No *tree, int num);
-// No* acha_menor(No *tree);
-// int acha_maior(int a, int b);
-// No *remove_no(No *tree, int num);
-// int altura(No *tree);
-// void exibir_emordem(No *tree);
-// void exibir_preordem(No *tree);
-// void exibir_posordem(No *tree);
-// void deletar_arv(No *tree);
+No* cria_no(int num);
+Arvore* cria_arvore(int num);
+void insere_no(No *minharaiz, int num);
+void pesquisa_no(No *minharaiz, int num);
+No* acha_menor(No *minharaiz);
+int acha_maior(int a, int b);
+No *remove_no(No *minharaiz, int num);
+int altura(No *minharaiz);
+void exibir_emordem(No *minharaiz);
+void exibir_preordem(No *minharaiz);
+void exibir_posordem(No *minharaiz);
+void deletar_arv(No *minharaiz);
 
 No* cria_no(int num){
 	No *tree;
@@ -43,41 +43,41 @@ Arvore* cria_arvore(int num){
 	return tree;
 }
 
-void insere_no(No *tree, int num){
-	if(num < tree->num){
-		if(tree->esq){
-			insere_no(tree->esq, num);
+void insere_no(No *minharaiz, int num){
+	if(num < minharaiz->num){
+		if(minharaiz->esq){
+			insere_no(minharaiz->esq, num);
 		}else{
 			No *novo = cria_no(num);
-			tree->esq = novo;
+			minharaiz->esq = novo;
 		}
 	}else{
-		if(tree->dir){
-			insere_no(tree->dir, num);
+		if(minharaiz->dir){
+			insere_no(minharaiz->dir, num);
 		}else{
 			No *novo = cria_no(num);
-			tree->dir = novo;
+			minharaiz->dir = novo;
 		}
 	}
 }
 
-void pesquisa_no(No *tree, int num){
-	if(tree == NULL){
+void pesquisa_no(No *minharaiz, int num){
+	if(minharaiz == NULL){
 		printf("Numero %d nao esta presente na arvore\n",num);
-	}else if(num < tree->num){
-		pesquisa_no(tree->esq, num);
-	}else if(num > tree->num){
-		pesquisa_no(tree->dir, num);
+	}else if(num < minharaiz->num){
+		pesquisa_no(minharaiz->esq, num);
+	}else if(num > minharaiz->num){
+		pesquisa_no(minharaiz->dir, num);
 	}else{
 		printf("O numero %d esta presente na arvore\n", num);
 	}
 }
 
-No* acha_menor(No *tree){
-	if(tree->esq == NULL){
-		return tree;
+No* acha_menor(No *minharaiz){
+	if(minharaiz->esq == NULL){
+		return minharaiz;
 	}
-	return acha_menor(tree->esq);
+	return acha_menor(minharaiz->esq);
 }
 
 int acha_maior(int a, int b){
@@ -87,78 +87,78 @@ int acha_maior(int a, int b){
 		return b;
 }
 
-No *remove_no(No *tree, int num){
+No *remove_no(No *minharaiz, int num){
 	No *aux;
-	if(tree==NULL){
+	if(minharaiz==NULL){
 		printf("Numero ausente\n");
-	}else if(num < tree->num){
-		tree->esq = remove_no(tree->esq, num);
-	}else if(num > tree->num){
-		tree->dir = remove_no(tree->dir, num);
-	}else if(tree->esq == NULL && tree->dir == NULL){
-		aux = tree;
-		free(tree);
+	}else if(num < minharaiz->num){
+		minharaiz->esq = remove_no(minharaiz->esq, num);
+	}else if(num > minharaiz->num){
+		minharaiz->dir = remove_no(minharaiz->dir, num);
+	}else if(minharaiz->esq == NULL && minharaiz->dir == NULL){
+		aux = minharaiz;
+		free(minharaiz);
 		return NULL;
-	}else if(tree->esq == NULL){
-		aux = tree->dir;
-		free(tree);
+	}else if(minharaiz->esq == NULL){
+		aux = minharaiz->dir;
+		free(minharaiz);
 		return aux;
-	}else if(tree->dir == NULL){
-		aux = tree->esq;
-		free(tree);
+	}else if(minharaiz->dir == NULL){
+		aux = minharaiz->esq;
+		free(minharaiz);
 		return aux;
 	}else{
-		No *menor = acha_menor(tree->dir);
-		tree->num = menor->num;
-		tree->dir = remove_no(tree->dir, menor->num);
+		No *menor = acha_menor(minharaiz->dir);
+		minharaiz->num = menor->num;
+		minharaiz->dir = remove_no(minharaiz->dir, menor->num);
 	}
-	return tree;
+	return minharaiz;
 }
 
-int altura(No *tree){
-	if((tree==NULL)||(tree->esq==NULL&&tree->dir==NULL)){
+int altura(No *minharaiz){
+	if((minharaiz==NULL)||(minharaiz->esq==NULL&&minharaiz->dir==NULL)){
 	return 0;
 	}else{
-	return 1 + acha_maior(altura(tree->esq), altura(tree->dir));
+	return 1 + acha_maior(altura(minharaiz->esq), altura(minharaiz->dir));
 	}
 }
 
-void exibir_emordem(No *tree){
-	if(tree!=NULL){
-	exibir_emordem(tree->esq);
-	printf("%d ",tree->num);
-	exibir_emordem(tree->dir);
+void exibir_emordem(No *minharaiz){
+	if(minharaiz!=NULL){
+	exibir_emordem(minharaiz->esq);
+	printf("%d ",minharaiz->num);
+	exibir_emordem(minharaiz->dir);
 	}
 }
 
-void exibir_preordem(No *tree){
-	if(tree!=NULL){
-	printf("%d ",tree->num);
-	exibir_preordem(tree->esq);
-	exibir_preordem(tree->dir);
+void exibir_preordem(No *minharaiz){
+	if(minharaiz!=NULL){
+	printf("%d ",minharaiz->num);
+	exibir_preordem(minharaiz->esq);
+	exibir_preordem(minharaiz->dir);
 	}
 }
 
-void exibir_posordem(No *tree){
-	if(tree!=NULL){
-	exibir_posordem(tree->esq);
-	exibir_posordem(tree->dir);
-	printf("%d ",tree->num);
+void exibir_posordem(No *minharaiz){
+	if(minharaiz!=NULL){
+	exibir_posordem(minharaiz->esq);
+	exibir_posordem(minharaiz->dir);
+	printf("%d ",minharaiz->num);
 	}
 }
 
-void deletar_arv(No *tree){
+void deletar_arv(No *minharaiz){
 	No *esquerda;
 	No *direita;
-	while(tree->esq!=NULL){
-	esquerda = tree->esq;
-	remove_no(tree, esquerda->num);
+	while(minharaiz->esq!=NULL){
+	esquerda = minharaiz->esq;
+	remove_no(minharaiz, esquerda->num);
 	}
-	while(tree->dir!=NULL){
-	direita = tree->dir;
-	remove_no(tree, direita->num);
+	while(minharaiz->dir!=NULL){
+	direita = minharaiz->dir;
+	remove_no(minharaiz, direita->num);
 	}
-	free(tree);
+	free(minharaiz);
 }
 
 
@@ -168,7 +168,7 @@ int main(){
 	while(opc==1){
 	printf("\nDigite um numero que sera a raiz de sua arvore: ");
 	scanf("%d",&x);
-	Arvore *tree = cria_arvore(x);
+	Arvore *minharaiz = cria_arvore(x);
 		opcao = 0;
 		while(opcao==0){
 		printf("\nInserir numero = 1\nEfetuar busca = 2\nRemover numero = 3\nVerificar altura = 4\nImprimir numeros = 5\nDeletar arvore = 6\nOpcao = ");
@@ -177,29 +177,29 @@ int main(){
 		if(opcao2==1){
 		printf("\nDigite um numero para ser inserido na arvore: ");
 		scanf("%d",&x);
-		insere_no(tree->raiz, x);
+		insere_no(minharaiz->raiz, x);
 		opcao=0;
 
 		}else if(opcao2==2){
 		printf("\nDigite um numero para ser pesquisado na arvore: ");
 		scanf("%d",&x);
-		pesquisa_no(tree->raiz, x);
+		pesquisa_no(minharaiz->raiz, x);
 		opcao=0;
 	
 		}else if(opcao2==3){
 		printf("\nDigite um numero para ser deletado da arvore: ");
 		scanf("%d",&x);
-		if(altura(tree->raiz)==0){
-		remove_no(tree->raiz, x);
+		if(altura(minharaiz->raiz)==0){
+		remove_no(minharaiz->raiz, x);
 		printf("\nVoce removeu o unico elemento da arvore\n");
 		opcao=1;
 		}else{
-		remove_no(tree->raiz, x);
+		remove_no(minharaiz->raiz, x);
 		opcao=0;
 		}
 
 		}else if(opcao2==4){
-		cont = altura(tree->raiz);
+		cont = altura(minharaiz->raiz);
 		printf("\nAltura = %d\n",cont);
 		opcao=0;
 		
@@ -207,18 +207,18 @@ int main(){
 		printf("\nImprimir in-ordem = 1, pre-ordem = 2 ou pos-ordem = 3\n");
 		scanf("%d",&opcao2);
 			if(opcao2==1){
-			exibir_emordem(tree->raiz);
+			exibir_emordem(minharaiz->raiz);
 			}else if(opcao2==2){
-			exibir_preordem(tree->raiz);
+			exibir_preordem(minharaiz->raiz);
 			}else{
-			exibir_posordem(tree->raiz);
+			exibir_posordem(minharaiz->raiz);
 			}
 		printf("\n");
 		opcao=0;
 		
 		}else if(opcao2==6){
-		deletar_arv(tree->raiz);
-		free(tree);
+		deletar_arv(minharaiz->raiz);
+		free(minharaiz);
 		break;
 		}
 }
