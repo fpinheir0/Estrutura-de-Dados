@@ -16,6 +16,7 @@ class No{
         No* getProx(); 
 };
 
+/*CRIANDO CLASSE LISTA*/
 class Lista{
     public:
         Lista();
@@ -33,3 +34,25 @@ class Lista{
         No *inicio;
         No *fim;
 };
+/*TRABALHANDO COM NÓS*/
+No::No(){
+    setProx(NULL);
+    setValor(0);
+}
+No::No(int valor){
+    setProx(NULL);
+    setValor(valor);
+}
+int No::getValor(){
+    return(valor);
+}   
+void No::setValor(int v){
+    valor = v;
+}
+No *No::getProx(){
+    return prox;
+}
+void No::setProx(No *n){
+    prox = n;
+}
+
