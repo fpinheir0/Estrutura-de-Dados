@@ -11,18 +11,18 @@ typedef struct arvore{
 	No *raiz;
 }Arvore;
 
-No* cria_no(int num);
-Arvore* cria_arvore(int num);
-void insere_no(No *minharaiz, int num);
-void pesquisa_no(No *minharaiz, int num);
-No* acha_menor(No *minharaiz);
-int acha_maior(int a, int b);
-No *remove_no(No *minharaiz, int num);
-int altura(No *minharaiz);
-void exibir_emordem(No *minharaiz);
-void exibir_preordem(No *minharaiz);
-void exibir_posordem(No *minharaiz);
-void deletar_arv(No *minharaiz);
+// No* cria_no(int num);
+// Arvore* cria_arvore(int num);
+// void insere_no(No *minharaiz, int num);
+// void pesquisa_no(No *minharaiz, int num);
+// No* acha_menor(No *minharaiz);
+// int acha_maior(int a, int b);
+// No *remove_no(No *minharaiz, int num);
+// int altura(No *minharaiz);
+// void exibir_emordem(No *minharaiz);
+// void exibir_preordem(No *minharaiz);
+// void exibir_posordem(No *minharaiz);
+// void deletar_arv(No *minharaiz);
 
 No* cria_no(int num){
 	No *tree;
