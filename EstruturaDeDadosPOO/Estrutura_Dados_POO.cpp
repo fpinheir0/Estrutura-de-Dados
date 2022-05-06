@@ -27,6 +27,7 @@ class Lista{
         void RemoveInit();
         void RemoveFinal();
         void DetruirLista();
+        void VoltarMenu();
 
         virtual void tPrint();
         No* getInicio(); 
@@ -46,6 +47,7 @@ class Pilha:public Lista{
         void removePilha();
         void tPrintPilha();
         void DetruirPilha();
+        void VoltarMenu();
 };
 
 class Fila:public Lista{
@@ -55,6 +57,7 @@ class Fila:public Lista{
         void removeFila();
         void tPrintFila();
         void DetruirFila();
+        void VoltarMenu();
 };
 
 /*
@@ -251,6 +254,7 @@ int opFila(){
         cout << "3 - Remover do final da lista" << endl;
         cout << "4 - Destruir lista\n" << endl;
         cout << "5 - Sair\n" << endl;
+        cout << "6 - Voltar ao Menu Principal\n" << endl;
         cin >> op;
         switch (op)
         {
@@ -280,6 +284,9 @@ int opFila(){
                 break;
             case 5://destruir lista
                 cout << "Saindo...";
+                break;
+            case 6: //Voltar ao Menu Principal
+                cout << "Voltando..";
                 break;
 
         
