@@ -1,5 +1,7 @@
 #include <iostream>
 #include <algorithm>
+#include <stdio.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -20,15 +22,18 @@ class Lista{
     public:
         Lista();
         Lista(int);
-        void insereInicio(int valor);
-        void insereFinal(int valor);
-        void removeInicio();
-        void removeFinal();
-        virtual void exibe();
-        void setInicio(No *n);
-        No* getInicio();
-        void setFinal(No *n);
+        void InsertInit(int valor);
+        void InsertFinal(int valor);
+        void RemoveInit();
+        void RemoveFinal();
+        void DetruirLista();
+
+        virtual void tPrint();
+        No* getInicio(); 
         No* getFinal();
+
+        void setInicio(No *n);
+        void setFinal(No *n);
     private:
         No *inicio;
         No *fim;
@@ -39,7 +44,8 @@ class Pilha:public Lista{
         Pilha();
         void inserePilha(int);
         void removePilha();
-        void exibePilha();
+        void tPrintPilha();
+        void DetruirPilha();
 };
 
 class Fila:public Lista{
@@ -47,15 +53,18 @@ class Fila:public Lista{
         Fila();
         void insereFila(int);
         void removeFila();
-        void exibeFila();
+        void tPrintFila();
+        void DetruirFila();
 };
 
-/*INICIO - TRABALHANDO COM NÓ**/
+/*
+*    CONSTRUCAO DOS NOS
+*/
 
-// No::No(){
-//     setProx(NULL);
-//     setValor(0);
-// }
+No::No(){
+    setProx(NULL);
+    setValor(0);
+}
 No::No(int valor){
     setProx(NULL);
     setValor(valor);
@@ -72,14 +81,35 @@ No *No::getProx(){
 void No::setProx(No *n){
     prox = n;
 }
-/*FIM - TRABALHANDO COM NÓ*/
-/*==========================================================================================*/
-/*INICIO - TRABALHANDO COM LISTAS*/
+/**
+ * CONTRUCAO DA LISTA
+ * 
+ */
+
 Lista::Lista(){
     setInicio(NULL);
     setFinal(NULL);
 }
-void Lista::insereInicio(int valor){
+
+void Lista::DetruirLista(){
+
+    struct No *aux;
+
+    if(inicio->getValor() == NULL){
+        cout << "Nao ha valores" << endl;
+    }
+    else{
+        aux = inicio;
+        cout << "\nItens:\n" << endl;
+        while (aux->getValor()){
+            RemoveInit();
+            
+        }
+    }
+    cout << endl;
+}
+
+void Lista::InsertInit(int valor){
     No *novo = new No(valor);
     if(fim == NULL){
         fim = novo;
@@ -88,60 +118,63 @@ void Lista::insereInicio(int valor){
     novo->setProx(inicio);
     inicio = novo;
 }
-void Lista::insereFinal(int valor){
+void Lista::InsertFinal(int valor){
     No *novo = new No(valor);
-    No *ponteiro = fim;
+    No *aux = fim;
     if (inicio == NULL){
         inicio = novo;
     }
     else{
-        ponteiro->setProx(novo);
+        aux->setProx(novo);
     }
     novo->setProx(NULL);        
     fim = novo;
 }
-void Lista::removeInicio(){
-    if(inicio == NULL){
-        cout << "Lista Vazia" << endl;
+void Lista::RemoveInit(){
+    if(inicio->getValor() == NULL){
+        cout << "\nLista esta vazia\n" << endl;
     }
     else{
         if (inicio->getProx() == NULL){
             fim = NULL;
         }
-        No *ponteiro = inicio;
-        inicio = ponteiro->getProx();
-        free(ponteiro);
-        ponteiro = NULL;
+        No *aux = inicio;
+        inicio = aux->getProx();
+        free(aux);
+        aux = NULL;
     }
 }
-void Lista::removeFinal(){
-    No *ponteiro = inicio;
+
+
+void Lista::RemoveFinal(){
+    No *aux = inicio;
 
     if (inicio == NULL){
-        cout << "Lista vazia" << endl;
+        cout << "\nLista esta vazia\n" << endl;
     }
     else{
-        while (ponteiro->getProx() != fim){
-            ponteiro = ponteiro->getProx();
+        while (aux->getProx() != fim){
+            aux = aux->getProx();
         }
         if(inicio->getProx() == NULL){
             inicio = NULL;
         }
         free(fim);
-        fim = ponteiro;
+        fim = aux;
     }
 }
-void Lista::exibe(){
-    struct No *ponteiro;
+
+void Lista::tPrint(){
+    struct No *aux;
     if(inicio == NULL){
-        cout << "A estrutura esta vazia" << endl;
+        cout << "Nao ha valores" << endl;
     }
     else{
-        ponteiro = inicio;
-        cout << "A estrutura e" << endl;
-        while (ponteiro != fim->getProx()){
-            cout << ponteiro->getValor() << " ";
-            ponteiro = ponteiro->getProx();
+        aux = inicio;
+        cout << "\nItens:\n" << endl;
+        while (aux != fim->getProx()){
+            cout << aux->getValor() << " ";
+            aux = aux->getProx();
         }
     }
     cout << endl;
@@ -158,115 +191,200 @@ No* Lista::getFinal(){
 void Lista::setFinal(No *n){
     fim = n;
 }
-/*FIM - TRABALHANDO COM LISTAS*/
-/*==========================================================================================*/
-/*INICIO - TRABALHANDO COM PILHAS*/
+
+/**
+ *    PILHAS
+ * 
+ */
+
 Pilha::Pilha(){
     setInicio(NULL);
     setFinal(NULL);
 }
 void Pilha::inserePilha(int valor){
-    insereInicio(valor);
+    InsertInit(valor);
 }
 void Pilha::removePilha(){
-    removeInicio();
+    RemoveInit();
 }
-void Pilha::exibePilha(){
-    exibe();
+void Pilha::tPrintPilha(){
+    tPrint();
 }
-/*FIM - TRABALHANDO COM PILHAS*/
-/*==========================================================================================*/
-/*INICIO - TRABALHANDO COM FILAS*/
+void Pilha::DetruirPilha(){
+    DetruirLista();
+}
+
+/*
+*      FILAS 
+*/
+
 Fila::Fila(){
     setInicio(NULL);
     setFinal(NULL);
 }
 void Fila::insereFila(int valor){
-    insereFinal(valor);
+    InsertFinal(valor);
 }
 void Fila::removeFila(){
-    removeInicio();
+    RemoveInit();
 }
-void Fila::exibeFila(){
-    exibe();
+void Fila::tPrintFila(){
+    tPrint();
 }
-/*FIM - TRABALHANDO COM FILAS*/   
-/*==========================================================================================*/
-/*INICIO - MAIN*/   
-int main(){
-    int opcao, valor;
+void Fila::DetruirFila(){
+    DetruirLista();
+}
+
+
+//=====================================================================================
+int op, valor;
+
+int opFila(){
     Lista *lista;
     lista = new Lista();
-
-    Pilha *pilha;
-    pilha = new Pilha();
-
-    Fila *fila;
-    fila = new Fila();
-    
     do{
         cout << endl;
-        cout << "1 - Inserir no inicio da lista" << endl;
-        cout << "2 - Inserir no final da lista" << endl;
-        cout << "3 - Remover do Inicio da lista" << endl;
-        cout << "4 - Remover do final da lista" << endl;
-        cout << "5 - Inserir na pilha" << endl;
-        cout << "6 - Remover da pilha" << endl;
-        cout << "7 - Inserir na fila" << endl;
-        cout << "8 - Remover da fila" << endl;
-        cout << "9 - Sair" << endl;
-        cin >> opcao;
-
-        switch (opcao){
-            case 1:
+        cout << "========= METODO LISTA =========" << endl;
+        cout << "0 - Inserir no inicio da lista" << endl;
+        cout << "1 - Inserir no final da lista" << endl;
+        cout << "2 - Remover do Inicio da lista" << endl;
+        cout << "3 - Remover do final da lista" << endl;
+        cout << "4 - Destruir lista\n" << endl;
+        cout << "5 - Sair\n" << endl;
+        cin >> op;
+        switch (op)
+        {
+            case 0: //inserir no inicio lista
                 cout << "Digite um valor para inserir no inicio: ";
                 cin >> valor;
-                lista->insereInicio(valor);
-                lista->exibe();
+                lista->InsertInit(valor);
+                lista->tPrint();
                 break;
-            case 2:
+            case 1://Inserir no final da lista
                 cout << "Digite um valor para inserir no final: ";
                 cin >> valor;
-                lista->insereFinal(valor);
-                lista->exibe();
+                lista->InsertFinal(valor);
+                lista->tPrint();
                 break;
-            case 3:
-                lista->removeInicio();
-                lista->exibe();
+            case 2://Remover do Inicio da lista
+                lista->RemoveInit();
+                lista->tPrint();
                 break;
-            case 4:
-                lista->removeFinal();
-                lista->exibe();
+            case 3: //Remover do final da lista
+                lista->RemoveFinal();
+                lista->tPrint();
                 break;
-            case 5:
+            case 4://destruir lista
+                lista->DetruirLista();
+                lista->tPrint();
+                break;
+            case 5://destruir lista
+                cout << "Saindo...";
+                break;
+
+        
+        default:
+            cout << "Opcao invalida";
+            break;
+        }
+
+    }while (op != 5);
+}
+
+int opPilha(){
+    Pilha *pilha;
+    pilha = new Pilha();
+    do{
+        cout << "========= METODO PILHA =========" << endl;
+        cout << "0 - Inserir na pilha" << endl;
+        cout << "1 - Remover da pilha" << endl;
+        cout << "2 - Destruir pilha\n" << endl;
+        cout << "3 - Sair\n" << endl;
+        
+        cin >> op;
+
+    switch (op) {
+            case 0:
                 cout << "Digite um valor para inserir na pilha: ";
                 cin >> valor;
                 pilha->inserePilha(valor);
-                pilha->exibePilha();
+                pilha->tPrintPilha();
                 break;
-            case 6:
+            case 1:
                 pilha->removePilha();
-                pilha->exibePilha();
+                pilha->tPrintPilha();
                 break;
-            case 7:
+            case 2: 
+                pilha->DetruirPilha();
+                cout <<"Pilha Destruida";
+                pilha->tPrintPilha();
+                break;
+            default:
+                cout << "Opcao invalida";
+                break;
+            }
+    }while (op != 3);
+}
+
+int opLista(){
+    Fila *fila;
+    fila = new Fila();
+    do{
+        cout << "========= METODO FILA =========" << endl;
+        cout << "0 - Inserir na fila" << endl;
+        cout << "1 - Remover da fila" << endl;
+        cout << "2 - Destruir fila e sair" << endl;
+        cin >> op;
+        switch (op) {
+            case 0: ///INSERE NA FILA
                 cout << "Digite um valor para inserir na fila: ";
                 cin >> valor;
                 fila->insereFila(valor);
-                fila->exibeFila();
+                fila->tPrintFila();
                 break;
-            case 8:
+            case 1://remove da fila
                 fila->removeFila();
-                fila->exibeFila();
+                fila->tPrintFila();
                 break;                    
-            case 9:
-                cout<<"Finalizando"<<endl;
-                break;                    
+            case 2://Destruir fila
+                fila->DetruirFila();
+                fila->tPrintFila();
+                cout <<"Fila Destruida";
+                break;              
             default:
                 cout << "Opcao invalida!"<<endl;
                 break;
         }
-    }while(opcao != 9);
+    }while(op != 11);
+}
 
-    return 0;
-/*FIM - MAIN*/   
+//=====================================================================================
+
+int main(){
+    do{
+        cout << "========= METODOS =========" << endl;
+        cout << "0 - FILA" << endl;
+        cout << "1 - PILHA" << endl;
+        cout << "2 - LISTA" << endl;
+        cin >> op;
+
+    switch (op){
+        case 0: 
+            opFila();
+            break;
+        case 1:
+            opPilha();
+            break;
+        case 2:
+            opLista();
+            break;
+        case 3:
+            cout << "Saindo...";
+            break;
+        }
+        
+    }while(op ==3);
+        
+   return 0;
+
 }
