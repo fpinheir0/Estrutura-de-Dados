@@ -52,10 +52,10 @@ class Fila:public Lista{
 
 /*INICIO - TRABALHANDO COM NÓ**/
 
-No::No(){
-    setProx(NULL);
-    setValor(0);
-}
+// No::No(){
+//     setProx(NULL);
+//     setValor(0);
+// }
 No::No(int valor){
     setProx(NULL);
     setValor(valor);
