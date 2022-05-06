@@ -343,7 +343,7 @@ int opLista(){
         cout << "2 - Destruir fila e sair" << endl;
         cin >> op;
         switch (op) {
-            case 0: ///INSERE NA FILA
+            case 0: ///inserre na fila
                 cout << "Digite um valor para inserir na fila: ";
                 cin >> valor;
                 fila->insereFila(valor);
