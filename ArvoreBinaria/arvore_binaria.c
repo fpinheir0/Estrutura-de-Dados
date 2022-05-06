@@ -25,22 +25,22 @@ typedef struct arvore{
 // void deletar_arv(No *minharaiz);
 
 No* cria_no(int num){
-	No *tree;
-	tree = (No*) malloc(sizeof(No));
+	No *minharaiz;
+	minharaiz = (No*) malloc(sizeof(No));
 
-	tree->esq = NULL;
-	tree->dir = NULL;
-	tree->num =  num;
+	minharaiz->esq = NULL;
+	minharaiz->dir = NULL;
+	minharaiz->num =  num;
 
-	return tree;
+	return minharaiz;
 }
 
 Arvore* cria_arvore(int num){
-	Arvore *tree;
-	tree = (Arvore*) malloc(sizeof(Arvore));
-	tree->raiz = cria_no(num);
+	Arvore *minharaiz;
+	minharaiz = (Arvore*) malloc(sizeof(Arvore));
+	minharaiz->raiz = cria_no(num);
 
-	return tree;
+	return minharaiz;
 }
 
 void insere_no(No *minharaiz, int num){

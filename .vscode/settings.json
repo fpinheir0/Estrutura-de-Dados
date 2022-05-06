@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "stdio.h": "c",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "ostream": "cpp"
     }
 }
