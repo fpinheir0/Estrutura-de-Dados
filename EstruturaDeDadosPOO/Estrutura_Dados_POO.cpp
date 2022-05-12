@@ -289,7 +289,6 @@ int opFila(){
                 cout << "Voltando..";
                 break;
 
-        
         default:
             cout << "Opcao invalida";
             break;
